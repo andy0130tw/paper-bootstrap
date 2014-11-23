@@ -6,7 +6,7 @@
 .button-variant(@color; @background; @border) {
   color: @color;
   background-color: @background;
-  border-color: @border;
+  //border-color: @border;
 
   &:hover,
   &:focus,
@@ -15,13 +15,27 @@
   &.active,
   .open > .dropdown-toggle& {
     color: @color;
-    background-color: darken(@background, 10%);
-        border-color: darken(@border, 12%);
+    @_background: ~`__color_variant__("@{background}",600)`;
+    & when (isstring(@_background)){
+      background-color: color(@_background);//darken(@background, 10%);
+    }
+    & when not (isstring(@_background)){
+      background-color: darken(@background, 10%);
+    }
+
+    //border-color: darken(@border, 12%);
   }
   &:active,
   &.active,
   .open > .dropdown-toggle& {
     background-image: none;
+    @_background: ~`__color_variant__("@{background}",700)`;
+    & when (isstring(@_background)){
+      background-color: color(@_background); //darken(@background, 10%);
+    }
+    & when not (isstring(@_background)){
+      background-color: darken(@background,15%); //not sure
+    }
   }
   &.disabled,
   &[disabled],
@@ -32,14 +46,55 @@
     &.focus,
     &:active,
     &.active {
-      background-color: @background;
-          border-color: @border;
+      background-color: fade(desaturate(@background,20),12); //12% #000000
+      color: fade(#000,26); //26% #000000
+      //  border-color: @border;
     }
   }
 
   .badge {
     color: @background;
     background-color: @color;
+  }
+}
+
+.button-flat-variant(@background) {
+  color: @background;
+  background-color: transparent;
+  border-color: transparent;
+
+  &:hover,
+  &:focus,
+  &.focus,
+  &:active,
+  &.active,
+  .open > .dropdown-toggle& {
+    //this is not defined.
+    background-color: fade(@background,12%); // 20%
+  }
+  &:active,
+  &.active,
+  .open > .dropdown-toggle& {
+    background-image: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    background-color: transparent;
+    color: rgba(0,0,0,.26);
+    /*&,
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background-color: @background;
+    }*/
+  }
+
+  .badge {
+    color: @white;
+    background-color: @background;
   }
 }
 

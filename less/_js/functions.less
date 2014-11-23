@@ -1,0 +1,36 @@
+// JS functions
+
+@__js_functions__:~`(function(){
+  //the code here will be exposed when being complied.
+  
+  //for debugging
+  __assert__=function(a,b){if(!a)throw new Error("assert failed! ["+(b||"<NULL>")+"]")};
+  
+  var colorCodeMapping={
+    "50"   :0, "700"  :7,
+    "100"  :1, "800"  :8,
+    "200"  :2, "900"  :9,
+    "300"  :3, "A100" :10,
+    "400"  :4, "A200" :11,
+    "500"  :5, "A400" :12,
+    "600"  :6, "A700" :13
+  };
+
+  //color: see paper-mixins/colors.less for color definitions.
+  __color__=function(color,code){
+    __assert__(this.__color_def__,"color def is not found");
+    var w=colorCodeMapping[code];
+    if(w==null)assert(0,"color not found");
+    return __color_def__[color][w];
+  }
+
+  //reversed map
+  __color_variant__=function(colorStr,code){
+    __assert__(this.__color_def_reversed__,"reversed color def is not found");
+    var c=__color_def_reversed__[colorStr.toUpperCase()];
+    //return must not be a string
+    if(!c) return null;
+    return __color__(c,code);
+  }
+
+})()`;

@@ -1,0 +1,7 @@
+//Shadows
+
+.box-shadow-dual(@offset1,@blur1,@opacity1,@offset2,@blur2,@opacity2){
+  @shadow: 0 @offset1 @blur1 rgba(0,0,0,@opacity1), 0 @offset2 @blur2 rgba(0,0,0,@opacity2);
+  -webkit-box-shadow: @shadow;
+          box-shadow: @shadow;
+}

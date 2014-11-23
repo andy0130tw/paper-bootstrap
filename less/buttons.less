@@ -6,7 +6,7 @@
 // Base styles
 // --------------------------------------------------
 
-.btn {
+.btn-proto(){
   display: inline-block;
   margin-bottom: 0; // For input.btn
   font-weight: @btn-font-weight;
@@ -20,6 +20,11 @@
   .button-size(@padding-base-vertical; @padding-base-horizontal; @font-size-base; @line-height-base; @border-radius-base);
   .user-select(none);
 
+  font-size: 14px;
+  //text-transform: uppercase;
+  transition: none ease-out 300ms;
+  transition-property: background, color, opacity, box-shadow;
+
   &,
   &:active,
   &.active {
@@ -32,7 +37,7 @@
   &:hover,
   &:focus,
   &.focus {
-    color: @btn-default-color;
+    //color: @btn-default-color;
     text-decoration: none;
   }
 
@@ -40,7 +45,7 @@
   &.active {
     outline: 0;
     background-image: none;
-    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+    //.box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
   }
 
   &.disabled,
@@ -48,11 +53,59 @@
   fieldset[disabled] & {
     cursor: @cursor-disabled;
     pointer-events: none; // Future-proof disabling of clicks
-    .opacity(.65);
+    //.opacity(.65);
     .box-shadow(none);
   }
 }
 
+// Almost a paper button except the min-height/min-width
+// As a prototype, the use of this class is discouraged
+.btn{
+  .btn-proto;
+  .shadow-z-1;
+  &:hover{.shadow-z-2;}
+  &:focus,&.focus,&:active,&.active{.shadow-z-3;}
+}
+// 3 kinds of button
+.btn-paper{
+  .btn;
+  min-height: 36px;
+  min-width: 88px;
+
+
+}
+.btn-flat{
+  .btn-proto;
+  //override for flat buttons
+  //color: @btn-default-color;
+  //box-shadow: none;
+  //follow bootstrap's naming convention
+  &.inverse{
+
+  }
+
+  &.btn-default,
+  &.btn-primary,
+  &.btn-success,
+  &.btn-info,
+  &.btn-warning,
+  &.btn-danger {
+    //color: @btn-default-color;
+    // border-color: transparent;
+    background-color: transparent;
+    &:hover,&:active,&:focus{
+      //color: @btn-default-color;
+      //background-color: .;
+      &.inverse{
+
+      }
+    }
+  }
+}
+
+.btn-fab{
+  .btn;
+}
 
 // Alternate buttons
 // --------------------------------------------------
@@ -80,7 +133,31 @@
   .button-variant(@btn-danger-color; @btn-danger-bg; @btn-danger-border);
 }
 
-
+// == Flat button variant
+.btn-flat{
+  &.btn-default {
+    .button-flat-variant(@btn-default-color);
+  }
+  &.btn-primary {
+    .button-flat-variant(@btn-primary-bg);
+  }
+  // Success appears as green
+  &.btn-success {
+    .button-flat-variant(@btn-success-bg);
+  }
+  // Info appears as blue-green
+  &.btn-info {
+    .button-flat-variant(@btn-info-bg);
+  }
+  // Warning appears as orange
+  &.btn-warning {
+    .button-flat-variant(@btn-warning-bg);
+  }
+  // Danger and error appear as red
+  &.btn-danger {
+    .button-flat-variant(@btn-danger-bg);
+  }
+}
 // Link buttons
 // -------------------------
 
@@ -90,6 +167,7 @@
   font-weight: normal;
   border-radius: 0;
 
+  //no shadow at all
   &,
   &:active,
   &.active,
@@ -103,18 +181,22 @@
   &:focus,
   &:active {
     border-color: transparent;
+    .box-shadow(none);
   }
   &:hover,
   &:focus {
     color: @link-hover-color;
     text-decoration: underline;
     background-color: transparent;
+    .box-shadow(none);
   }
+  //missing class
+  &.disabled,
   &[disabled],
   fieldset[disabled] & {
+    color: @btn-link-disabled-color;
     &:hover,
     &:focus {
-      color: @btn-link-disabled-color;
       text-decoration: none;
     }
   }
