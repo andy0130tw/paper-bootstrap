@@ -37,7 +37,7 @@
 //** Background color for `<body>`.
 @body-bg:               #FAFAFA;
 //** Global text color on `<body>`.
-@text-color:            @basic_dark;
+@text-color:            @basic_text_dark;
 
 //** Global textual link color.
 @link-color:            @brand-primary;
@@ -59,7 +59,8 @@
 @font-family-base:        @font-family-sans-serif;
 
 //device 14px, desktop 13px
-@font-size-base:          13px;
+// and we adapt the dense spec
+@font-size-base:          14px;
 //not yet changed
 @font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
 @font-size-small:         ceil((@font-size-base * 0.85)); // ~12px
@@ -72,17 +73,18 @@
 // @font-size-h5:            @font-size-base;
 // @font-size-h6:            ceil((@font-size-base * 0.85)); // ~12px
 
-@font-size-h1:            34px; // Display 1
-@font-size-h2:            24px; // Headline
-@font-size-h3:            20px; // Title
-@font-size-h4:            15px; // Subhead, device 16px desktop 15px
-@font-size-h5:            @font-size-base; 
-@font-size-h6:            12px; // Caption
+@font-size-h1:            45px; // Display 2
+@font-size-h2:            34px; // Display 1
+@font-size-h3:            24px; // Headline
+@font-size-h4:            20px; // Title
+@font-size-h5:            16px; // Subhead, device 16px desktop 15px
+@font-size-h6:            @font-size-base; 
+//@font-size-h6:            12px; // Caption
 
 //** Unit-less `line-height` for use in components like buttons.
 //for device,  body tall: 1.714285714 (24/14), body dense: 1.428571429 (20/14)
 //for desktop, body tall: 1.846153846 (24/13), body dense: 1.538461538 (20/13)
-@line-height-base:        1.538461538;
+@line-height-base:        1.428571429;
 //** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
 @line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
 
@@ -879,4 +881,4 @@
 //** Width of horizontal description list titles
 @dl-horizontal-offset:        @component-offset-horizontal;
 //** Horizontal line color.
-@hr-border:                   @gray-lighter;
+@hr-border:                   darken(#fff, 12%); //@gray-lighter
