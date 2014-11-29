@@ -61,48 +61,41 @@ h1, h2, h3, h4, h5, h6,
 }
 
 h1, .h1 {
-  font-size: @font-size-h1;
+  .text-display-2;
   color: @basic_text_light;
-  line-height: 48px;
   margin-top: 32px;
   margin-bottom: 16px;
 }
 h2, .h2 {
-  font-size: @font-size-h2;
+  .text-display-1;
   color: @basic_text_light;
   line-height: 40px;
   margin-top: 32px;
   margin-bottom: 16px;
 }
 h3, .h3{
-  font-size: @font-size-h3;
+  .text-headline;
   color: @basic_text_dark;
   line-height: 32px;
   margin-top:16px;
   margin-bottom: 8px;
 }
 h4, .h4 {
-  font-size: @font-size-h4;
+  .text-title;
   color: @basic_text_dark;
   font-weight: 500;
   line-height: 28px;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 h5, .h5{
-  font-size: @font-size-h5;
+  .text-subhead;
   color: @basic_text_dark;
   line-height: 24px;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 h6, .h6 {
-  font-size: @font-size-h6;
+  .text-body;
   color: @basic_text_dark;
   font-weight: 500;
   line-height: 24px;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 h1, .h1,
@@ -117,6 +110,8 @@ h3, .h3 {
 h4, .h4,
 h5, .h5,
 h6, .h6 {
+  margin-top: 10px;
+  margin-bottom: 10px;
   small,
   .small {
     font-size: 75%;
@@ -128,18 +123,19 @@ h6, .h6 {
 // -------------------------
 
 p {
-  margin: 0 0 (@line-height-computed / 2);
+  margin: 0 0 12px; //10px
 }
 
 .lead {
   margin-bottom: @line-height-computed;
-  font-size: floor((@font-size-base * 1.15));
+  font-size: 20px; //orignial: floor((@font-size-base * 1.15))
   font-weight: 300;
-  line-height: 1.4;
+  line-height: 32px; //not sure
 
-  @media (min-width: @screen-sm-min) {
-    font-size: (@font-size-base * 1.5);
-  }
+  // the config looks good even on small screen
+  // @media (min-width: @screen-sm-min) {
+  //   font-size: (@font-size-base * 1.5);
+  // }
 }
 
 
@@ -217,8 +213,9 @@ mark,
 // -------------------------
 
 .page-header {
-  padding-bottom: ((@line-height-computed / 2) - 1);
-  margin: (@line-height-computed * 2) 0 @line-height-computed;
+  padding-bottom: ((@line-height-computed / 2));
+  //decrease margin by 1px for border-bottom
+  margin: (@line-height-computed * 2) 0 (@line-height-computed - 1px);
   border-bottom: 1px solid @page-header-border-color;
 }
 
@@ -248,12 +245,12 @@ ol {
 // Inline turns list items into inline-block
 .list-inline {
   .list-unstyled();
-  margin-left: -5px;
+  margin-left: -8px;
 
   > li {
     display: inline-block;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }
 
@@ -318,7 +315,7 @@ blockquote {
   padding: (@line-height-computed / 2) @line-height-computed;
   margin: 0 0 @line-height-computed;
   font-size: @blockquote-font-size;
-  border-left: 5px solid @blockquote-border-color;
+  border-left: 4px solid @blockquote-border-color;
 
   p,
   ul,
@@ -349,9 +346,9 @@ blockquote {
 // Heads up: `blockquote.pull-right` has been deprecated as of v3.1.0.
 .blockquote-reverse,
 blockquote.pull-right {
-  padding-right: 15px;
+  padding-right: 16px;
   padding-left: 0;
-  border-right: 5px solid @blockquote-border-color;
+  border-right: 4px solid @blockquote-border-color;
   border-left: 0;
   text-align: right;
 
